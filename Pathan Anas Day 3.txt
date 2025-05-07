@@ -1,0 +1,106 @@
+  
+
+
+ Use Store
+
+ alter Table Employees add Tarik Date;
+ alter Table Employees add Waqt time;   
+ select * from Employees
+
+  
+  
+  Drop Procedure GetAllEmployees
+
+  
+  CREATE PROCEDURE GetAllEmployees
+    
+    AS
+    BEGIN
+
+    SELECT * FROM Employees;
+
+    END;
+
+
+ 
+   Drop  Procedure UpdateEmployee
+ 
+ 
+   create procedure updateEmployee
+
+	@EmployeeID int,
+	@FirstName nvarchar(50),
+	@LastName nvarchar(50),
+	@DepartmentID int,
+	@Position nvarchar(50),
+	@Tarik date,
+	@Waqt time
+	
+	AS
+	Begin
+	
+	Update Employees
+	
+	set FirstName = @FirstName,
+		LastName = @LastName,
+		DepartmentID = @DepartmentID,
+		Position = @Position,
+		Tarik = @Tarik,
+		Waqt = @Waqt
+		
+    where EmployeeID = @EmployeeID;
+	
+	END;
+	
+	exec updateEmployee
+	
+	  @EmployeeID = 6,
+   	  @FirstName = 'Sufiyan',
+  	  @LastName = 'Pathan',
+          @DepartmentID = 110024,
+ 	  @Position = 'Manager',
+   	  @Tarik ='2025-05-15',
+ 	  @Waqt = '12:30:00';
+
+    
+    select * from Employees
+
+
+    
+    
+    Drop Procedure DeleteEmployee 
+ 
+	create procedure DeleteEmployee
+	@EmployeeID int
+	
+	AS
+	Begin
+	Delete From Employees
+	Where EmployeeID = @EmployeeID;
+	END;
+    
+    exec DeleteEmployee @EmployeeID = 3;
+
+
+
+    
+    
+    Drop Procedure GetEmployeeByID
+    
+    
+    
+    CREATE PROCEDURE GetEmployeeByID
+    @EmployeeID INT
+
+    AS
+    BEGIN
+    SELECT * FROM Employees
+
+    WHERE EmployeeID = @EmployeeID;
+    END;
+
+
+    EXEC GetEmployeeByID @EmployeeID = 7;
+
+
+    SELECT * FROM Employees;     

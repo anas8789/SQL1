@@ -1,0 +1,133 @@
+	
+ 
+  <1> What is Stored Procedure 
+
+  A Stored Procedure (SP) is a precompiled collection of one or more SQL statements
+  that you save and reuse in a relational database like SQL Server, MySQL, or Oracle.
+
+
+ Points:
+
+  * Stored in the database under a name.
+
+  * Can include SQL queries, logic, loops, conditions, and even error handling.
+
+  * Supports input/output parameters.
+
+  * Enhances performance, security, and code reuse.
+
+
+
+  ->  SQL USED
+
+
+      
+
+     Create Database Company
+
+     use Company
+
+
+    CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY IDENTITY(1,1),
+    FirstName NVARCHAR(50),
+    LastName NVARCHAR(50),
+    DepartmentID INT,
+    Position NVARCHAR(50)
+);
+
+    INSERT INTO Employees (FirstName, LastName, DepartmentID, Position)
+    VALUES ('Irfan', 'shaikh', 110021, 'Chairman');
+
+    select * from Employees
+
+  
+
+ * (Create Procedure)
+
+
+    CREATE PROCEDURE GetAllEmployees
+    
+    AS
+    BEGIN
+
+    SELECT * FROM Employees;
+
+    END;
+
+
+
+ * (Update Procedure)
+
+
+    CREATE PROCEDURE UpdateEmployee
+    @EmployeeID INT,
+    @FirstName NVARCHAR(50),
+    @LastName NVARCHAR(50),
+    @DepartmentID INT,
+    @Position NVARCHAR(50)
+
+
+    AS
+    BEGIN
+    UPDATE Employees
+
+    SET FirstName = @FirstName,
+        LastName = @LastName,
+        DepartmentID = @DepartmentID,
+        Position = @Position, 
+
+    WHERE EmployeeID = @EmployeeID;
+    END;
+
+
+
+    EXEC UpdateEmployee
+
+    @EmployeeID = 2,
+    @FirstName = 'rehan',
+    @LastName = 'Doe',
+    @DepartmentID = 2,
+    @Position = 'Manager';
+
+
+
+ * (Delete Procedure)
+
+
+    CREATE PROCEDURE DeleteEmployee
+    @EmployeeID INT
+
+    AS
+    BEGIN
+    DELETE FROM Employees
+    WHERE EmployeeID = @EmployeeID;
+    END;
+
+
+    EXEC DeleteEmployee @EmployeeID = 2;
+
+
+
+ * (Search Procedure)
+
+
+    CREATE PROCEDURE GetEmployeeByID
+    @EmployeeID INT
+
+    AS
+    BEGIN
+    SELECT * FROM Employees
+
+    WHERE EmployeeID = @EmployeeID;
+    END;
+
+
+    EXEC GetEmployeeByID @EmployeeID = 5;
+
+
+    SELECT * FROM Employees;     
+ 
+
+
+ 

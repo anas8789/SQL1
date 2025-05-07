@@ -1,0 +1,136 @@
+
+ Primary Key       
+
+
+ <1> What is Primary Key
+ 
+   primary key is the column or columns that contain values that uniquely identify each row in a table. A 
+   database table must have a primary key for Optim to insert, update, restore, or delete data from a database table. Optim 
+   uses primary keys that are defined to the database. However, you can also define primary keys to supplement those in the database. 
+
+
+ 
+ <2> Benefits of a primary key
+
+   :- helps identify unique data, such as a customer ID;
+
+   :- prevents duplication of records in a table;
+
+   :- helps with updating or deleting only specific records;
+
+   :- helps ensure that fields aren't null;
+
+   :- helps set up relationships between tables; and  
+      ensures row-level accessibility. 
+
+
+
+ <3> Example
+
+
+   1>
+	Create Database Company
+	Use Company
+	CREATE TABLE Employee (EmpId int primary key, Name  varchar(20),Age int,Salary int )
+   	insert into Employee values (01,'Saeed',20,10000)
+	Select * from Employee
+
+       
+          Result
+
+            EmpId |  Name  |  Age |  Salary
+             
+             01      Saeed    20     10000 
+
+
+
+ 
+
+ Foreign Key
+
+ 
+
+ <1> What is Foreign Key
+
+    :- A foreign key is a column (or set of columns) in a database table that creates a link between data in two tables.It 
+      acts as a reference to the primary key in another table.
+
+    > It enforces referential integrity, meaning it ensures that the value in the
+      foreign key column must match a valid primary key in the referenced table.
+
+    > It helps maintain consistent and related data across tables.
+
+
+
+ <2> Advantage and Disadvantage of foreign Key
+
+     Advantages
+
+        :- Data Integrity
+           Ensures that records in related tables remain consistent (e.g., you can't insert an order for a non-existent customer).
+
+
+
+        :- Prevents Orphan Records
+           Foreign keys prevent records from being left without a related parent (e.g., an order without a customer).
+
+     
+     Disadvantage 
+
+       :- Complexity in Design
+          Managing multiple foreign key relationships can make the schema harder to understand and maintain.
+
+
+       :- Dependency Issues
+          Deleting a parent record can be restricted if child records exist, unless cascading is used.
+
+
+  <3> Example 
+
+    
+       Create Database IT
+       Use IT
+
+       CREATE TABLE Departments (
+       DeptID INT PRIMARY KEY,
+       DeptName VARCHAR(20)
+);
+
+   
+       CREATE TABLE Employees (
+       EmpID INT PRIMARY KEY,
+       EmpName VARCHAR(20),
+       DeptID INT,
+       FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)
+);
+
+
+     INSERT INTO Departments VALUES (1, 'HR'), (2, 'IT');
+
+     Select * From Departments
+
+     INSERT INTO Employees VALUES (101, 'Saeed', 1);
+
+     Select * From Employees 
+
+
+       Result 
+     
+        
+         * Departments
+       
+            DeptID | DepName
+   
+              1         HR
+              2         IT  
+  
+
+         * Employees 
+
+           EmpID | EmpName | DeptID  
+
+            101     Saeed      1
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
